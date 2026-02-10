@@ -78,7 +78,7 @@ class CustomUserLoginForm(AuthenticationForm):
         password = self.cleaned_data.get('password')
 
         if email and password:
-            self.user_cache = authenticate(self.request, username=email, password=password)  # Используйте username вместо email
+            self.user_cache = authenticate(self.request, username=email, password=password)
             if self.user_cache is None:
                 raise forms.ValidationError('Invalid email or password.')
             elif not self.user_cache.is_active:
