@@ -22,7 +22,6 @@ body {
   min-height: 100vh;
 }
 
-/* HEADER */
 header {
   background: var(--panel);
   border-bottom: 1px solid var(--border);
@@ -58,14 +57,12 @@ header .btn:hover {
   transform: translateY(-1px);
 }
 
-/* MAIN */
 main {
   max-width: 960px;
   margin: 2rem auto;
   padding: 0 1.5rem;
 }
 
-/* SEARCH SECTION */
 .search-section {
   margin-bottom: 2rem;
 }
@@ -91,13 +88,11 @@ main {
   box-shadow: 0 0 0 3px rgba(255,138,0,0.2);
 }
 
-/* LIST SECTION */
 .list-section h2 {
   margin-bottom: 1rem;
   font-size: 1.25rem;
 }
 
-/* CARDS */
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
