@@ -65,3 +65,8 @@ def update_account_details(request):
 def logout_view(request):
     logout(request)
     return redirect('users:register')
+
+@login_required
+def profile_views(request):
+    is_admin = request.user.is_staff
+    return render(request, 'users/profile.html', {'user': request.user, 'is_admin': is_admin})

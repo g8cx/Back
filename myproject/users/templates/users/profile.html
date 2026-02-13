@@ -4,6 +4,7 @@
 
 {% block content %}
     <h1>Hi, {{ request.user.first_name|upper }} {{ request.user.last_name|upper }}</h1>
+    
     <div class="profile-section">
         <h2>Account Details</h2>
         <p>{{ request.user.first_name }} {{ request.user.last_name }}</p>
@@ -16,8 +17,13 @@
         </button>
         <div id="account-details-content"></div>
     </div>
+
     <div class="button-container">
         <a href="{% url 'memory_index' %}" class="link">Go to main page</a>
         <a href="{% url 'users:logout' %}" class="link">Log Out</a>
+
+        {% if request.user.is_staff %}
+            <a href="{% url 'admin:index' %}" class="link">Go to Admin Panel</a>
+        {% endif %}
     </div>
 {% endblock %}
