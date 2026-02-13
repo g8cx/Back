@@ -1,0 +1,135 @@
+:root {
+  --bg: #fff7f0;
+  --panel: #ffffff;
+  --text: #2b2b2b;
+  --muted: #7a7a7a;
+  --accent: #ff8a00;
+  --accent-soft: #ffe2bf;
+  --border: #f1c89b;
+  --error: #e53935;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  background: linear-gradient(135deg, #fff7f0, #ffe9d6);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(255,138,0,0.1);
+}
+
+.header-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.75rem;
+}
+
+header .btn {
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(255,138,0,0.25);
+  transition: all 0.2s ease;
+}
+
+header .btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+/* MAIN */
+main {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* SEARCH SECTION */
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-section h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  outline: none;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255,138,0,0.2);
+}
+
+/* LIST SECTION */
+.list-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+/* CARDS */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(255,138,0,0.15);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255,138,0,0.25);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.card .dates {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.card .desc {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: #4a4a4a;
+}
