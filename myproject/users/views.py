@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomUserUpdateForm
-from .models import CustomUser
+from django.shortcuts import redirect, render
 
+from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomUserUpdateForm
 
 def register(request):
     if request.method == 'POST':
@@ -18,6 +17,9 @@ def register(request):
     
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('users:profile')
+
     if request.method == 'POST':
         form = CustomUserLoginForm(request=request, data=request.POST)
         if form.is_valid():
@@ -30,43 +32,35 @@ def login_view(request):
 
 
 @login_required
-def profile_views(request):
-    return render(request, 'users/profile.html', {'user': request.user})
+def profile_view(request):
+    return render(request, 'users/profile.html')
 
 
 @login_required
 def account_details(request):
-    user = CustomUser.objects.get(id=request.user.id)
-    return render(request, 'users/partials/account_details.html',
-                  {'user': user})
+    return render(request, 'users/partials/account_details.html', {'user': request.user})
 
 
 @login_required
 def edit_account_details(request):
     form = CustomUserUpdateForm(instance=request.user)
-    return render(request, 'users/partials/edit_account_details.html', 
-                  {'user': request.user, 'form': form})
+    return render(request, 'users/partials/edit_account_details.html', {'form': form})
 
 
 @login_required
 def update_account_details(request):
-    if request.method == 'POST':
-        form = CustomUserUpdateForm(request.POST, instance=request.user)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.clean()  
-            user.save()
-            return render(request, 'users/partials/account_details.html', {'user': user})
-        else:
-            return render(request, 'users/partials/edit_account_details.html', {'user': request.user, 'form': form})
-    return render(request, 'users/partials/account_details.html', {'user': request.user})
-     
-     
-def logout_view(request):
-    logout(request)
-    return redirect('users:register')
+    if request.method != 'POST':
+        return redirect('users:profile')
+
+    form = CustomUserUpdateForm(request.POST, instance=request.user)
+    if form.is_valid():
+        form.save()
+        return render(request, 'users/partials/account_details.html', {'user': request.user})
+    return render(request, 'users/partials/edit_account_details.html', {'form': form})
+
 
 @login_required
-def profile_views(request):
-    is_admin = request.user.is_staff
-    return render(request, 'users/profile.html', {'user': request.user, 'is_admin': is_admin})
+def logout_view(request):
+    logout(request)
+    return redirect('users:login')
+

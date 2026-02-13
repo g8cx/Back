@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import fallen_list, memory_page
+from . import views
+
+app_name = "memory"
 
 urlpatterns = [
-    path("", memory_page, name="memory_index"),
-    path("api/fallen/", fallen_list),
+    path("", views.memory_page, name="memory_index"),
+    path("add-fallen/", views.add_fallen, name="add_fallen"),
+    path("api/fallen/", views.fallen_list, name="fallen_list"),
 ]

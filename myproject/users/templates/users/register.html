@@ -60,7 +60,7 @@
             {% endif %}
         </div>
         <button type="submit">Create</button>
-        <a href="{% url 'memory_index' %}" class="link">Go to main page</a>
+        <a href="{% url 'memory:memory_index' %}" class="link">Go to main page</a>
         <a href="{% url 'users:login' %}" class="link">Already registered? Log in</a>
     </form>
 {% endblock %}

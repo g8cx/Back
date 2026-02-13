@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Add Fallen{% endblock %}
+
+{% block content %}
+<h1>Add a New Fallen</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Fallen</button>
+</form>
+
+<a href="{% url 'users:profile' %}" class="link">Back to Profile</a>
+{% endblock %}
